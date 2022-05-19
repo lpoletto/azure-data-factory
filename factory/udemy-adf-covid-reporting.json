@@ -1,0 +1,9 @@
+{
+	"name": "udemy-adf-covid-reporting",
+	"location": "brazilsouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "0ebb4b4d-a8b4-4718-a78d-2bb51128cac2",
+		"tenantId": "b68f32b2-1480-467d-807a-86fc3a2e987b"
+	}
+}
