@@ -15,16 +15,10 @@
 			"value": "https://udemycovidreportdl.dfs.core.windows.net"
 		},
 		"ls_http_opendata_ecdc_europa_eu_properties_typeProperties_url": {
-			"value": "https://ecdc.blob.core.windows.net"
+			"value": "@{linkedService().sourceBaseURL}"
 		},
 		"tg_ingest_population_data_properties_typeProperties_scope": {
 			"value": "/subscriptions/d77c7dbc-7dab-4a9d-90d1-b5cd0373058f/resourceGroups/udemy-covid-reporting-rg/providers/Microsoft.Storage/storageAccounts/udemycovidreport"
-		},
-		"tr_ingest_hospital_admissions_data_properties_pl_ingest_ecdc_data_parameters_sourceRelativeURL": {
-			"value": "covid19/hospital_admissions.csv"
-		},
-		"tr_ingest_hospital_admissions_data_properties_pl_ingest_ecdc_data_parameters_sinkFileName": {
-			"value": "hospital_admissions.csv"
 		}
 	}
 }
