@@ -1068,6 +1068,7 @@
 						"SelectForSink sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     partitionFileNames:['case_and_deaths.csv'],",
+						"     truncate: true,",
 						"     umask: 0022,",
 						"     preCommands: [],",
 						"     postCommands: [],",
