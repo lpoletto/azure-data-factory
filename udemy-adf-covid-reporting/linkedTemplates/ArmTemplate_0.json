@@ -1244,7 +1244,7 @@
 							"name": "SelectWeekly"
 						},
 						{
-							"name": "DelectDaily"
+							"name": "SelectDaily"
 						}
 					],
 					"scriptLines": [
@@ -1346,9 +1346,11 @@
 						"     columnNaming: '$V_$N',",
 						"     lateral: true) ~> PivotDaily",
 						"PivotWeekly sort(desc(reported_year_week, true),",
-						"     asc(country, true)) ~> SortWeekly",
+						"     asc(country, true),",
+						"     partitionBy('hash', 1)) ~> SortWeekly",
 						"PivotDaily sort(desc(reported_date, true),",
-						"     asc(country, true)) ~> SortDaily",
+						"     asc(country, true),",
+						"     partitionBy('hash', 1)) ~> SortDaily",
 						"SortWeekly select(mapColumn(",
 						"          country,",
 						"          country_code_2_digit,",
@@ -1374,21 +1376,27 @@
 						"          source",
 						"     ),",
 						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> DelectDaily",
+						"     skipDuplicateMapOutputs: true) ~> SelectDaily",
 						"SelectWeekly sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
+						"     partitionFileNames:['hospital_admissions_weekly.csv'],",
+						"     truncate: true,",
 						"     umask: 0022,",
 						"     preCommands: [],",
 						"     postCommands: [],",
 						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> WeelySink",
-						"DelectDaily sink(allowSchemaDrift: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     partitionBy('hash', 1)) ~> WeelySink",
+						"SelectDaily sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
+						"     partitionFileNames:['hospital_admissions_daily.csv'],",
+						"     truncate: true,",
 						"     umask: 0022,",
 						"     preCommands: [],",
 						"     postCommands: [],",
 						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> DailySink"
+						"     skipDuplicateMapOutputs: true,",
+						"     partitionBy('hash', 1)) ~> DailySink"
 					]
 				}
 			},
